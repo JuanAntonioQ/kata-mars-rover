@@ -111,18 +111,18 @@ data class Position(var x: Int, var y: Int) {
 data class Direction (var value: String){
 
     val directions = mapOf(
-        "N" to "N,W,E",
-        "E" to "E,N,S",
-        "S" to "S,E,W",
-        "W" to "W,S,N"
+        "N" to "W,E",
+        "E" to "N,S",
+        "S" to "E,W",
+        "W" to "S,N"
     )
     fun turnRight(): Direction {
-        var right: String = directions.get(this.value)!!.split(",")[2]
+        var right: String = directions.get(this.value)!!.split(",")[1]
         return Direction(right)
     }
 
     fun turnLeft(): Direction {
-        var left: String = directions.get(this.value)!!.split(",")[1]
+        var left: String = directions.get(this.value)!!.split(",")[0]
         return Direction(left)
     }
 
