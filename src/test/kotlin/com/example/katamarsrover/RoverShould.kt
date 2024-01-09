@@ -87,6 +87,16 @@ class RoverShould {
 
         Assertions.assertEquals("0:1:N", rover.execute("M"))
     }
+
+    @Test
+    fun `move two positions to the north`() {
+        var board: Board = Board(10, 10)
+        var position: Position = Position(0, 0)
+        var direction: Direction = Direction("N")
+        var rover: Rover = Rover(board, position, direction)
+
+        Assertions.assertEquals("0:2:N", rover.execute("MM"))
+    }
 }
 
 class Rover(var board: Board, var position: Position, var direction: Direction) {
