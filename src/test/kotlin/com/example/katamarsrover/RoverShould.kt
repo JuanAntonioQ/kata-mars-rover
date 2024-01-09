@@ -47,6 +47,16 @@ class RoverShould {
 
         Assertions.assertEquals("0:0:W", rover.execute("RRR"))
     }
+
+    @Test
+    fun `start facing to the north and turn left once`() {
+        var board: Board = Board(10, 10)
+        var position: Position = Position(0, 0)
+        var direction: Direction = Direction("N")
+        var rover: Rover = Rover(board, position, direction)
+
+        Assertions.assertEquals("0:0:W", rover.execute("L"))
+    }
 }
 
 class Rover(var board: Board, var position: Position, var direction: Direction) {
@@ -63,6 +73,9 @@ class Rover(var board: Board, var position: Position, var direction: Direction) 
         for (command in commands) {
             if (command == 'R') {
                 direction = direction.turnRight()
+            }
+            if (command == 'L') {
+                direction = direction.turnLeft()
             }
         }
         return currentPosition().x.toString() + ":" + currentPosition().y.toString() + ":" + direction.value
@@ -86,6 +99,11 @@ data class Direction (var value: String){
     fun turnRight(): Direction {
         var right: String = directions.get(this.value)!!.split(",")[2]
         return Direction(right)
+    }
+
+    fun turnLeft(): Direction {
+        var left: String = directions.get(this.value)!!.split(",")[1]
+        return Direction(left)
     }
 
 }
